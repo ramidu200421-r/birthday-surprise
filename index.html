@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffe6ea;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            color: #4a4a4a;
+        }
+        .card {
+            max-width: 400px;
+            margin: 20px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1 { color: #ff4b72; font-size: 24px; }
+        .balloon-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .balloon {
+            width: 50px;
+            height: 65px;
+            background-color: #ff758c;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s, opacity 0.3s;
+        }
+        .balloon:hover { transform: scale(1.1); }
+        .popped { opacity: 0; pointer-events: none; }
+        .btn {
+            background: #ff4b72;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .hidden { display: none; }
+        .photo { width: 100%; border-radius: 15px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="step1">
+        <h1>Happy Birthday, My Sudu BBH Patiyo! ❤️</h1>
+        <p>Are you excited for your birthday surprise?</p>
+        <button class="btn" onclick="nextStep(2)">Yes! ✨</button>
+    </div>
+
+    <div class="card hidden" id="step2">
+        <h1>Pop all the balloons! 🎈</h1>
+        <div class="balloon-container">
+            <div class="balloon" onclick="pop(this)">1</div>
+            <div class="balloon" onclick="pop(this)" style="background:#70a1ff;">2</div>
+            <div class="balloon" onclick="pop(this)" style="background:#7bed9f;">3</div>
+        </div>
+        <p id="balloonMsg" class="hidden"> You are so special to me! </p>
+        <button class="btn hidden" id="btn2" onclick="nextStep(3)">Next ❤️</button>
+    </div>
+
+    <div class="card hidden" id="step3">
+        <h1>A Special Message For You ✉️</h1>
+        <p style="text-align: left; line-height: 1.6;">
+            Happy Birthday to my sweet sudu bbh patiyo! 🎉✨ You bring so much joy, love, and light into my world. Thank you for being my safe space and my favorite person every single day. I wish you endless happiness, beautiful moments, and all the love in the world today. Love you! 🤍
+        </p>
+    </div>
+
+    <script>
+        let poppedCount = 0;
+        function nextStep(step) {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            document.getElementById('step' + step).classList.remove('hidden');
+        }
+        function pop(el) {
+            el.classList.add('popped');
+            poppedCount++;
+            if(poppedCount === 3) {
+                document.getElementById('balloonMsg').classList.remove('hidden');
+                document.getElementById('btn2').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
